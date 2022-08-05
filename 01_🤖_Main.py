@@ -12,29 +12,38 @@ st.set_page_config(
 
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-instruction = st.text_input("Enter your instructions:", "Move the robot forward for 1 second then stop")
+# Instruction input
+if 'instructions' not in st.session_state:
+    st.session_state['instructions'] = ['Stop']
 
-if st.button("🤖 Script"):
-    if instruction:
-        response = openai.Edit.create(
+new_instruction = st.text_input("Add Instruction")
+if st.button("Add instruction"):
+    st.session_state['instructions'].insert(-1, new_instruction)
+
+instructions_incode = ""
+instructions_prompt = "Complete the code below to execute the instructions:\n"
+for index, instruction in enumerate(st.session_state['instructions']):
+    st.caption(f"{index + 1}. {instruction}")
+    instructions_prompt += f"    {index + 1}. {instruction}\n"
+    instructions_incode += f"   // {index + 1}. {instruction}\n\n\n"
+
+
+# Generate code
+if st.button("🤖 Generate Script"):
+    response = openai.Edit.create(
         model="code-davinci-edit-001",
-        input = f"/*\nProgram Description: This program is a RobotC program\n\nRobot Description: The robot has 4 motors with 4 wheels.\n*/\n\nint main()\n{{\n    // {instruction}\n    ",
-        # suffix="\n}",
-        instruction=instruction,
+        input = f"/*\nProgram Description: This program is a RobotC program\n\nRobot Description: The robot has 4 motors with 4 wheels.\n*/\n\nint main()\n{{\n{instructions_incode}\n    ",
+        instruction=instructions_prompt,
         temperature=0,
         top_p=1
-        )
+    )
 
-        if 'choices' in response:
-            x = response['choices']
-            if len(x) > 0:
-                st.code(x[0]['text'], language="c")
-            else:
-                st.write("No choices found")
-
-
-    else:
-        st.error("Please enter your instructions.")
+    if 'choices' in response:
+        x = response['choices']
+        if len(x) > 0:
+            st.code(x[0]['text'], language="c")
+        else:
+            st.write("No choices found")
 
 
 
