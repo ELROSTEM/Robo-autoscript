@@ -1,1 +1,12 @@
 To do:
+- Make is so that codex generates each instruction individually. Just for loop throught the 
+instructions and the input the previous generation into the new generation
+
+
+Ideas:
+- Have robot architecture templates that can be chosen, for example Sense-plan-act architecture. Then write a sense-plan-act architecture by hand.
+Have codex write the code to fill in those architecture.
+
+- Perhaps can lead to multi model approach with command, action, and vision mashed together. Codex can operate command and action
+with already pretraining in NLP so a vision model simply needs to categorize the object and codex can already "understand" it and
+operate.
