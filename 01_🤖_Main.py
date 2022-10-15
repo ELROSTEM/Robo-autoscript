@@ -1,5 +1,8 @@
 import streamlit as st
 import openai
+from streamlit_ace import st_ace
+import subprocess
+import pyautogui
 
 st.set_page_config(
      page_title="Robo Auto Script",
@@ -12,14 +15,10 @@ st.set_page_config(
 
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-from streamlit_ace import st_ace
+
 
 # Spawn a new Ace editor
-content = st_ace(value="/*\nProgram Description: This program is a RobotC program\n\nRobot Description: The robot has 4 motors with 4 wheels.\n*/\n\nint main()\n{\n\n    ", language="c")
-
-
-# Display editor's content as you type
-content
+content = st_ace(value="#pragma config(Motor,  port2,           rightMotor,    tmotorNormal, openLoop, reversed)\n#pragma config(Motor,  port3,           leftMotor,     tmotorNormal, openLoop)\n\n/*\nProgram Description: This program is a RobotC program\n\nRobot Description: The robot has 2 motors with 4 wheels.\n*/\n\ntask main()\n{\n", language="c")
 
 
 # Instruction input
@@ -46,18 +45,40 @@ for index, instruction in enumerate(st.session_state['instructions']):
 if st.button("🤖 Generate Script"):
     response = openai.Edit.create(
         model="code-davinci-edit-001",
-        input = f"/*\nProgram Description: This program is a RobotC program\n\nRobot Description: The robot has 4 motors with 4 wheels.\n*/\n\nint main()\n{{\n{instructions_incode}\n    ",
+        input = f"{content}{instructions_incode}\n",
         instruction=instructions_prompt,
         temperature=0,
         top_p=1
     )
 
     if 'choices' in response:
-        x = response['choices']
-        if len(x) > 0:
-            st.code(x[0]['text'], language="c")
+        response_choices = response['choices']
+        if len(response_choices) > 0:
+            # Display the first choice
+            st.code(response_choices[0]['text'], language="c")
+
+            # Download the first choice
+            st.download_button('Download Script', response_choices[0]['text'].encode('utf-8'), file_name='script.c', mime='text/plain')
+
+            # Open RoboC
+            subprocess.call(('start', 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\ROBOTC 4.x>'))
+            # Wait for RoboC to open
+            pyautogui.sleep(5)
+            # Open the script
+            pyautogui.hotkey('ctrl', 'o')
+            pyautogui.sleep(1)
+            pyautogui.typewrite('script.c')
+            pyautogui.sleep(1)
+            pyautogui.press('enter')
+            # Wait for the script to open
+            pyautogui.sleep(5)
+            # Compile the script
+            pyautogui.press('f5')
+
         else:
             st.write("No choices found")
+
+
 
 
 
