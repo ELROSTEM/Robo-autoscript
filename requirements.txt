@@ -1,5 +1,4 @@
 streamlit
 openai
 streamlit_ace
-subprocess
 pyautogui

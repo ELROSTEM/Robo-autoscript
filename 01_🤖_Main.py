@@ -57,23 +57,29 @@ if st.button("🤖 Generate Script"):
             # Display the first choice
             st.code(response_choices[0]['text'], language="c")
 
+            # save the script to a file
+            with open('script.c', 'w') as f:
+                f.write(response_choices[0]['text'])
+
             # Download the first choice
             st.download_button('Download Script', response_choices[0]['text'].encode('utf-8'), file_name='script.c', mime='text/plain')
+            
 
-            # Open RoboC
-            subprocess.call(('start', 'C:\ProgramData\Microsoft\Windows\Start Menu\Programs\ROBOTC 4.x>'))
-            # Wait for RoboC to open
-            pyautogui.sleep(5)
-            # Open the script
-            pyautogui.hotkey('ctrl', 'o')
+            # Open RoboC and Compile the script
+            subprocess.Popen(r'C:\Program Files (x86)\Robomatter Inc\ROBOTC Development Environment 4.X\ROBOTC.exe')
+            pyautogui.sleep(4)
+            pyautogui.hotkey('ctrl', 'o') # Open file
             pyautogui.sleep(1)
-            pyautogui.typewrite('script.c')
+            pyautogui.typewrite('C:\Coding\GitHub\Robo-autoscript\script.c') # Type the path to the script
             pyautogui.sleep(1)
-            pyautogui.press('enter')
-            # Wait for the script to open
-            pyautogui.sleep(5)
-            # Compile the script
-            pyautogui.press('f5')
+            pyautogui.press('enter') # Press enter
+            pyautogui.sleep(3)
+            pyautogui.press('f5') # Compile
+            pyautogui.sleep(10)
+            pyautogui.hotkey('alt', 'f4') # Close RobotC
+
+
+
 
         else:
             st.write("No choices found")
