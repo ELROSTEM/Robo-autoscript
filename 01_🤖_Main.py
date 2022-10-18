@@ -75,7 +75,11 @@ if st.button("🤖 Generate Script"):
             pyautogui.press('enter') # Press enter
             pyautogui.sleep(3)
             pyautogui.press('f5') # Compile
-            pyautogui.sleep(10)
+            pyautogui.sleep(3)
+            pyautogui.moveTo(400, 75)
+            pyautogui.sleep(5)
+            pyautogui.click()
+            pyautogui.sleep(5)
             pyautogui.hotkey('alt', 'f4') # Close RobotC
 
 
