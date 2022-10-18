@@ -71,14 +71,12 @@ if st.button("🤖 Generate Script"):
             pyautogui.hotkey('ctrl', 'o') # Open file
             pyautogui.sleep(1)
             pyautogui.typewrite('C:\Coding\GitHub\Robo-autoscript\script.c') # Type the path to the script
-            pyautogui.sleep(1)
+            pyautogui.sleep(2)
             pyautogui.press('enter') # Press enter
             pyautogui.sleep(3)
             pyautogui.press('f5') # Compile
             pyautogui.sleep(10)
             pyautogui.hotkey('alt', 'f4') # Close RobotC
-
-
 
 
         else:

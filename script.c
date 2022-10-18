@@ -9,13 +9,17 @@ Robot Description: The robot has 2 motors with 4 wheels.
 
 task main()
 {
-   // 1. go forward for 1 seccond
-  motor[rightMotor] = 50;
-  motor[leftMotor] = 50;
-  wait1Msec(1000);
-   // 2. spin for 3 seconds
-
+   // 1. spin for 2 seconds
+	int speed = 50;
+	motor[leftMotor] = speed;
+	motor[rightMotor] = -speed;
+	wait1Msec(2000);
+   // 2. go forward
+	motor[leftMotor] = speed;
+	motor[rightMotor] = speed;
+	wait1Msec(2000);
 
    // 3. Stop
-
-
+	motor[leftMotor] = 0;
+	motor[rightMotor] = 0;
+}
