@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="ASR robot project" company="ELROSTEM" webLink="http://" view-date="2022-10-06" view-index="0" gantt-divider-location="316" resource-divider-location="300" version="3.2.3240" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="ASR robot project" company="ELROSTEM" webLink="http://" view-date="2022-10-12" view-index="0" gantt-divider-location="814" resource-divider-location="300" version="3.2.3246" locale="en_US">
     <description>
         <![CDATA[Daniel, Jackson, Michael and Ryan]]>
     </description>
     <view zooming-state="default:2" id="gantt-chart">
-        <field id="tpd3" name="Name" width="157" order="0"/>
-        <field id="tpd4" name="Begin date" width="71" order="1"/>
-        <field id="tpd5" name="End date" width="71" order="2"/>
+        <field id="tpd3" name="Name" width="271" order="0"/>
+        <field id="tpd4" name="Begin date" width="271" order="1"/>
+        <field id="tpd5" name="End date" width="271" order="2"/>
         <option id="filter.completedTasks" value="false"/>
     </view>
     <view id="resource-table">
-        <field id="0" name="Name" width="209" order="0"/>
-        <field id="1" name="Default role" width="85" order="1"/>
+        <field id="0" name="Name" width="210" order="0"/>
+        <field id="1" name="Default role" width="86" order="1"/>
     </view>
     <!-- -->
     <calendars>
@@ -36,50 +36,79 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="1" name="solution exploration" color="#8cb6ce" meeting="false" start="2022-10-12" duration="3" complete="0" thirdDate="2022-10-14" thirdDate-constraint="0" expand="true">
-            <task id="0" name="Voice to text solution exploration" color="#8cb6ce" meeting="false" start="2022-10-12" duration="1" complete="0" thirdDate="2022-10-14" thirdDate-constraint="0" expand="true">
+        <task id="1" name="Solution Exploration" color="#8cb6ce" meeting="false" start="2022-10-12" duration="3" complete="0" thirdDate="2022-10-14" thirdDate-constraint="0" expand="true">
+            <task id="0" name="voice to text technology" color="#8cb6ce" meeting="false" start="2022-10-12" duration="1" complete="0" thirdDate="2022-10-14" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[v2t = voice to text
+]]>
+                </notes>
                 <depend id="3" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="11" name="english to robot research for solution" color="#8cb6ce" meeting="false" start="2022-10-12" duration="1" complete="0" thirdDate="2022-10-10" thirdDate-constraint="0" expand="true">
+            <task id="11" name="English to robot code" color="#8cb6ce" meeting="false" start="2022-10-12" duration="1" complete="0" thirdDate="2022-10-10" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[Turning the steps in english to robot code
+]]>
+                </notes>
                 <depend id="12" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="15" name="connecting text from voice output to robot" color="#8cb6ce" meeting="false" start="2022-10-12" duration="3" complete="0" thirdDate="2022-10-07" thirdDate-constraint="0" expand="true">
+            <task id="15" name="research wireless &amp; eventual offline robot" color="#8cb6ce" meeting="false" start="2022-10-12" duration="3" complete="0" thirdDate="2022-10-07" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[t2r = text to robot
+Researching a way to do this wirelessly
+]]>
+                </notes>
                 <depend id="16" type="2" difference="0" hardness="Strong"/>
             </task>
         </task>
-        <task id="2" name="High level design" color="#000000" meeting="false" start="2022-10-13" duration="3" complete="0" thirdDate="2022-10-17" thirdDate-constraint="0" expand="true">
-            <task id="3" name="Voice to text design" color="#8cb6ce" meeting="false" start="2022-10-13" duration="1" complete="0" thirdDate="2022-10-13" thirdDate-constraint="0" expand="true">
+        <task id="2" name="High level design" color="#000000" meeting="false" start="2022-10-13" duration="5" complete="0" thirdDate="2022-10-17" thirdDate-constraint="0" expand="true">
+            <task id="3" name="v2t" color="#8cb6ce" meeting="false" start="2022-10-13" duration="1" complete="0" thirdDate="2022-10-13" thirdDate-constraint="0" expand="true">
                 <depend id="5" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="12" name="english to robot high level design" color="#8cb6ce" meeting="false" start="2022-10-13" duration="1" complete="0" thirdDate="2022-10-13" thirdDate-constraint="0" expand="true">
+            <task id="12" name="English to robot code" color="#8cb6ce" meeting="false" start="2022-10-13" duration="1" complete="0" thirdDate="2022-10-13" thirdDate-constraint="0" expand="true">
                 <depend id="9" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="16" name="connecting text to robot" color="#8cb6ce" meeting="false" start="2022-10-17" duration="1" complete="0" thirdDate="2022-10-17" thirdDate-constraint="0" expand="true">
+            <task id="16" name="wireless t2r" color="#8cb6ce" meeting="false" start="2022-10-19" duration="1" complete="0" thirdDate="2022-10-17" thirdDate-constraint="0" expand="true">
                 <depend id="18" type="2" difference="0" hardness="Strong"/>
             </task>
         </task>
-        <task id="4" name="detailed design" meeting="false" start="2022-10-14" duration="7" complete="0" expand="true">
-            <task id="5" name="Voice to text detailed design" color="#8cb6ce" meeting="false" start="2022-10-14" duration="1" complete="0" thirdDate="2022-10-17" thirdDate-constraint="0" expand="true">
+        <task id="4" name="detailed design" meeting="false" start="2022-10-14" duration="6" complete="0" expand="true">
+            <task id="5" name="v2t" color="#8cb6ce" meeting="false" start="2022-10-14" duration="1" complete="0" thirdDate="2022-10-17" thirdDate-constraint="0" expand="true">
                 <depend id="7" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="9" name="researching english to robot" color="#8cb6ce" meeting="false" start="2022-10-14" duration="1" complete="0" thirdDate="2022-10-17" thirdDate-constraint="0" expand="true">
-                <depend id="10" type="2" difference="0" hardness="Strong"/>
+            <task id="9" name="ENG to robot" color="#8cb6ce" meeting="false" start="2022-10-14" duration="1" complete="0" thirdDate="2022-10-17" thirdDate-constraint="0" expand="true"/>
+            <task id="18" name="wireless t2r" color="#8cb6ce" meeting="false" start="2022-10-20" duration="2" complete="0" thirdDate="2022-10-17" thirdDate-constraint="0" expand="true">
+                <depend id="19" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="18" name="connecting text to robot" color="#8cb6ce" meeting="false" start="2022-10-18" duration="5" complete="0" thirdDate="2022-10-17" thirdDate-constraint="0" expand="true"/>
         </task>
         <task id="6" name="Implementation" meeting="false" start="2022-10-17" duration="8" complete="0" expand="true">
-            <task id="7" name="Implementation of voice to text" color="#8cb6ce" meeting="false" start="2022-10-17" duration="4" complete="0" thirdDate="2022-10-21" thirdDate-constraint="0" expand="true">
+            <task id="7" name="v2t" color="#8cb6ce" meeting="false" start="2022-10-17" duration="4" complete="0" thirdDate="2022-10-21" thirdDate-constraint="0" expand="true">
                 <depend id="19" type="2" difference="0" hardness="Strong"/>
+                <depend id="20" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="10" name="implementing the english to robot code into streamlit" color="#8cb6ce" meeting="false" start="2022-10-17" duration="2" complete="0" thirdDate="2022-10-17" thirdDate-constraint="0" expand="true">
+            <task id="10" name="ENG to robot" color="#8cb6ce" meeting="false" start="2022-10-17" duration="2" complete="0" thirdDate="2022-10-17" thirdDate-constraint="0" expand="true">
                 <depend id="14" type="2" difference="0" hardness="Strong"/>
+                <depend id="16" type="2" difference="0" hardness="Strong"/>
                 <depend id="19" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="19" name="implementing the connection between text and streamlit" color="#8cb6ce" meeting="false" start="2022-10-24" duration="3" complete="0" thirdDate="2022-10-21" thirdDate-constraint="0" expand="true"/>
+            <task id="19" name="wireless t2r" color="#8cb6ce" meeting="false" start="2022-10-24" duration="3" complete="0" thirdDate="2022-10-21" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[We are planning to remove this later once everything else is finalized.]]>
+                </notes>
+            </task>
+            <task id="22" name="v2t to streamlit" color="#8cb6ce" meeting="false" start="2022-10-25" duration="1" complete="0" thirdDate="2022-10-12" thirdDate-constraint="0" expand="true"/>
         </task>
-        <task id="13" name="Testing" meeting="false" start="2022-10-19" duration="3" complete="0" expand="true">
-            <task id="14" name="Testing robot with english through streamlit" color="#8cb6ce" meeting="false" start="2022-10-19" duration="3" complete="0" thirdDate="2022-10-19" thirdDate-constraint="0" expand="true">
-                <depend id="19" type="2" difference="0" hardness="Strong"/>
+        <task id="13" name="Testing" meeting="false" start="2022-10-19" duration="4" complete="0" expand="true">
+            <task id="14" name="robot w/o wireless" color="#8cb6ce" meeting="false" start="2022-10-19" duration="2" complete="0" thirdDate="2022-10-19" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[Testing just the steps to code steps with phyiscal cable (the orange one) ]]>
+                </notes>
+            </task>
+            <task id="20" name="v2t seperated" color="#8cb6ce" meeting="false" start="2022-10-21" duration="2" complete="0" thirdDate="2022-10-10" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[Testing voice to text offline
+]]>
+                </notes>
+                <depend id="22" type="2" difference="0" hardness="Strong"/>
             </task>
         </task>
     </tasks>
@@ -94,16 +123,36 @@
         <allocation task-id="11" resource-id="0" function="Default:0" responsible="false" load="10.0"/>
         <allocation task-id="3" resource-id="0" function="Default:0" responsible="true" load="90.0"/>
         <allocation task-id="12" resource-id="0" function="Default:0" responsible="false" load="10.0"/>
+        <allocation task-id="5" resource-id="0" function="Default:0" responsible="true" load="90.0"/>
+        <allocation task-id="9" resource-id="0" function="Default:0" responsible="false" load="10.0"/>
+        <allocation task-id="7" resource-id="0" function="Default:0" responsible="true" load="90.0"/>
+        <allocation task-id="10" resource-id="0" function="Default:0" responsible="false" load="10.0"/>
+        <allocation task-id="22" resource-id="0" function="Default:0" responsible="true" load="90.0"/>
         <allocation task-id="11" resource-id="1" function="Default:0" responsible="false" load="25.0"/>
         <allocation task-id="15" resource-id="1" function="Default:0" responsible="true" load="75.0"/>
         <allocation task-id="12" resource-id="1" function="Default:0" responsible="false" load="25.0"/>
+        <allocation task-id="9" resource-id="1" function="Default:0" responsible="false" load="25.0"/>
+        <allocation task-id="16" resource-id="1" function="Default:0" responsible="true" load="75.0"/>
+        <allocation task-id="18" resource-id="1" function="Default:0" responsible="true" load="75.0"/>
+        <allocation task-id="10" resource-id="1" function="Default:0" responsible="false" load="25.0"/>
+        <allocation task-id="19" resource-id="1" function="Default:0" responsible="true" load="75.0"/>
         <allocation task-id="0" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="15" resource-id="2" function="Default:0" responsible="false" load="40.0"/>
         <allocation task-id="11" resource-id="2" function="Default:0" responsible="false" load="10.0"/>
         <allocation task-id="3" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="12" resource-id="2" function="Default:0" responsible="false" load="10.0"/>
+        <allocation task-id="5" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="9" resource-id="2" function="Default:0" responsible="false" load="10.0"/>
+        <allocation task-id="16" resource-id="2" function="Default:0" responsible="false" load="40.0"/>
+        <allocation task-id="18" resource-id="2" function="Default:0" responsible="false" load="40.0"/>
+        <allocation task-id="7" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
+        <allocation task-id="10" resource-id="2" function="Default:0" responsible="false" load="10.0"/>
+        <allocation task-id="19" resource-id="2" function="Default:0" responsible="false" load="40.0"/>
+        <allocation task-id="22" resource-id="2" function="Default:0" responsible="false" load="50.0"/>
         <allocation task-id="11" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
         <allocation task-id="12" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="9" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="10" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
     </allocations>
     <vacations/>
     <previous/>
