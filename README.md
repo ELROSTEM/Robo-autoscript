@@ -1,5 +1,5 @@
 # Robo-autoscript
-using codex for robots
+Using Codex and SayCan for robots
 
 
 # Get started
