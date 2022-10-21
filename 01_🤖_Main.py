@@ -4,6 +4,10 @@ from streamlit_ace import st_ace
 import subprocess
 import pyautogui
 
+# Environment variables
+robotc_path = r'C:\Program Files (x86)\Robomatter Inc\ROBOTC Development Environment 4.X\ROBOTC.exe' 
+script_path = 'C:\Coding\GitHub\Robo-autoscript\script.c'
+
 st.set_page_config(
      page_title="Robo Auto Script",
      page_icon="🤖",
@@ -14,8 +18,6 @@ st.set_page_config(
 )
 
 openai.api_key = st.secrets["OPENAI_API_KEY"]
-
-
 
 # Spawn a new Ace editor
 content = st_ace(value="#pragma config(Motor,  port2,           rightMotor,    tmotorNormal, openLoop, reversed)\n#pragma config(Motor,  port3,           leftMotor,     tmotorNormal, openLoop)\n\n/*\nProgram Description: This program is a RobotC program\n\nRobot Description: The robot has 2 motors with 4 wheels.\n*/\n\ntask main()\n{\n", language="c")
@@ -66,18 +68,18 @@ if st.button("🤖 Generate Script"):
             
 
             # Open RoboC and Compile the script
-            subprocess.Popen(r'C:\Program Files (x86)\Robomatter Inc\ROBOTC Development Environment 4.X\ROBOTC.exe')
+            subprocess.Popen(robotc_path)
             pyautogui.sleep(4)
             pyautogui.hotkey('ctrl', 'o') # Open file
             pyautogui.sleep(1)
-            pyautogui.typewrite('C:\Coding\GitHub\Robo-autoscript\script.c') # Type the path to the script
+            pyautogui.typewrite(script_path) # Type the path to the script
             pyautogui.sleep(2)
             pyautogui.press('enter') # Press enter
             pyautogui.sleep(3)
             pyautogui.press('f5') # Compile
             pyautogui.sleep(3)
             pyautogui.moveTo(400, 75)
-            pyautogui.sleep(5)
+            pyautogui.sleep(8)
             pyautogui.click()
             pyautogui.sleep(5)
             pyautogui.hotkey('alt', 'f4') # Close RobotC
