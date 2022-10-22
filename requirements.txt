@@ -2,3 +2,5 @@ streamlit
 openai
 streamlit_ace
 pyautogui
+pyaudio
+speechrecognition
