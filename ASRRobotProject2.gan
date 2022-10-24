@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?><project name="ASR robot project" company="ELROSTEM" webLink="http://" view-date="2022-11-28" view-index="0" gantt-divider-location="464" resource-divider-location="300" version="3.2.3240" locale="en_US">
+    <description>
+        <![CDATA[Daniel, Jackson, Michael and Ryan]]>
+    </description>
+    <view zooming-state="default:2" id="gantt-chart">
+        <field id="tpd3" name="Name" width="224" order="0"/>
+        <field id="tpd4" name="Begin date" width="113" order="1"/>
+        <field id="tpd5" name="End date" width="111" order="2"/>
+        <option id="filter.completedTasks" value="false"/>
+        <option id="color.recent">
+            <![CDATA[#ccff00 #ccff99 #ffff00 #ffcc66 #ffff33 #ffcc99 #ff9966 #ff9933 #ff6600 #cc6600]]>
+        </option>
+    </view>
+    <view id="resource-table">
+        <field id="0" name="Name" width="209" order="0"/>
+        <field id="1" name="Default role" width="85" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <default-week id="1" name="default" sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+            <only-show-weekends value="false"/>
+            <overriden-day-types/>
+            <days/>
+        </day-types>
+    </calendars>
+    <tasks empty-milestones="true">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="24" name="Introduction to ASR" color="#000000" meeting="false" start="2022-06-15" duration="79" complete="0" thirdDate="2022-06-02" thirdDate-constraint="0" expand="true">
+            <task id="25" name="Initial Meeting" color="#333333" meeting="false" start="2022-06-15" duration="1" complete="0" thirdDate="2022-08-30" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[Attend the ASR Introductory Meeting During NYSED Regents Week]]>
+                </notes>
+                <depend id="26" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="26" name="Summer Meetings" color="#666666" meeting="false" start="2022-06-16" duration="61" complete="0" thirdDate="2022-08-18" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[Attend ASR Summer Meetings and Identify Potential Project Topics]]>
+                </notes>
+                <depend id="27" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="27" name="Class Introduction" color="#999999" meeting="false" start="2022-09-09" duration="17" complete="0" thirdDate="2022-08-24" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[Study and Explore the Project Proposal, Planning, and Execution Process During the First Few Weeks of the School Year]]>
+                </notes>
+            </task>
+            <task id="28" name="Proposal Synthesis" color="#cccccc" meeting="false" start="2022-09-16" duration="2" complete="0" thirdDate="2022-09-19" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[After Identifying the Project Topic, Submit a Detailed Project Proposal and Begin Developing a Presentation/Slideshow]]>
+                </notes>
+                <depend id="31" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="31" name="Proposal Presentation" color="#ffffff" meeting="false" start="2022-09-20" duration="10" complete="0" thirdDate="2022-09-22" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[Present the Project Proposal to the Class and Receive Feedback from the Instructor (Mr. Lin) and Peers
+]]>
+                </notes>
+            </task>
+        </task>
+        <task id="29" name="Project Initialization" color="#cc0033" meeting="false" start="2022-10-03" duration="16" complete="0" thirdDate="2022-10-03" thirdDate-constraint="0" expand="true">
+            <task id="30" name="Familiarize Technologies" color="#330033" meeting="false" start="2022-10-03" duration="6" complete="0" thirdDate="2022-09-16" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[Familiarize the Group with Existing Softwares, like CODEX, and Similar Projects, like SAYCAN]]>
+                </notes>
+                <depend id="35" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="34" name="Study RobotC" color="#990033" meeting="false" start="2022-10-05" duration="4" complete="0" thirdDate="2022-10-05" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[Introduce the RobotC Programming Language that Will Serve as the Backbone of the Robotics Portion of the Project]]>
+                </notes>
+            </task>
+            <task id="35" name="Explore Planning" color="#ff3333" meeting="false" start="2022-10-11" duration="7" complete="0" thirdDate="2022-09-12" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[Outline Steps for the Project, Including Areas of Initial Concern and Future, High-Level Ideas that Will Be Addressed Later in the Project]]>
+                </notes>
+            </task>
+            <task id="32" name="Feasibility Study" color="#ff3300" meeting="false" start="2022-10-10" duration="10" complete="0" thirdDate="2022-09-22" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[Begin the Feasibility Study to Prove that the Concept of the Project is Possible
+]]>
+                </notes>
+                <task id="33" name="Construct &quot;Jake&quot;" color="#ff3300" meeting="false" start="2022-10-10" duration="5" complete="0" thirdDate="2022-09-22" thirdDate-constraint="0" expand="true">
+                    <notes>
+                        <![CDATA[Assemble "Jake from State Farm", Low-Level Robot and Initial Prototype]]>
+                    </notes>
+                    <depend id="36" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="36" name="Early Programming" color="#ff6666" meeting="false" start="2022-10-17" duration="2" complete="0" thirdDate="2022-09-27" thirdDate-constraint="0" expand="true">
+                    <notes>
+                        <![CDATA[Write and Compile the Initial Systems and Networks of Code for the Project]]>
+                    </notes>
+                    <depend id="37" type="2" difference="0" hardness="Strong"/>
+                </task>
+                <task id="37" name="Feasibility Implementation" color="#ff9999" meeting="false" start="2022-10-19" duration="3" complete="0" thirdDate="2022-09-30" thirdDate-constraint="0" expand="true">
+                    <notes>
+                        <![CDATA[Implement the Feasibility Prototype and Evaluate its Abilities and Efficiency]]>
+                    </notes>
+                    <depend id="41" type="2" difference="0" hardness="Strong"/>
+                </task>
+            </task>
+            <task id="38" name="Gantt Chart" color="#ff3333" meeting="false" start="2022-10-17" duration="6" complete="0" thirdDate="2022-10-18" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[Establish a Timeline and Schedule for the Project; Present to the Class for Feedback]]>
+                </notes>
+            </task>
+        </task>
+        <task id="1" name="Primary Exploration" color="#cc6600" meeting="false" start="2022-10-17" duration="7" complete="0" thirdDate="2022-10-14" thirdDate-constraint="0" expand="true">
+            <notes>
+                <![CDATA[Following Implementation, Begin to Explore Technologies Related to the Project and Expand on Research]]>
+            </notes>
+            <task id="0" name="Explore Voice to Text" color="#ff6600" meeting="false" start="2022-10-20" duration="2" complete="0" thirdDate="2022-10-14" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[Study and Explore Potential Voice to Text Technologies that Could Be Implemented into the Project
+]]>
+                </notes>
+                <depend id="40" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="40" name="Voice to Text Integration" color="#ff9933" meeting="false" start="2022-10-24" duration="2" complete="0" thirdDate="2022-09-28" thirdDate-constraint="0" expand="true"/>
+            <task id="11" name="English to Robot Code" color="#ff9933" meeting="false" start="2022-10-17" duration="6" complete="0" thirdDate="2022-10-10" thirdDate-constraint="0" expand="true">
+                <notes>
+                    <![CDATA[Turning the Steps in English to Robot Code
+]]>
+                </notes>
+                <depend id="41" type="2" difference="0" hardness="Strong"/>
+            </task>
+        </task>
+        <task id="41" name="Congressional App Challenge" color="#ffcc66" meeting="false" start="2022-10-25" duration="4" complete="0" thirdDate="2022-11-08" thirdDate-constraint="0" expand="true">
+            <depend id="42" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="42" name="Iterations from challenge" color="#ffff00" meeting="false" start="2022-10-31" duration="5" complete="0" thirdDate="2022-10-17" thirdDate-constraint="0" expand="true">
+            <depend id="43" type="2" difference="0" hardness="Strong"/>
+        </task>
+        <task id="43" name="Secondary Exploration" color="#ccff99" meeting="false" start="2022-11-07" duration="16" complete="0" thirdDate="2022-10-19" thirdDate-constraint="0" expand="true">
+            <task id="44" name="Getting a raspberry PI" color="#ccff99" meeting="false" start="2022-11-07" duration="1" complete="0" thirdDate="2022-11-07" thirdDate-constraint="0" expand="true">
+                <depend id="45" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="45" name="Researching how to use PI" color="#ccff99" meeting="false" start="2022-11-08" duration="4" complete="0" thirdDate="2022-11-08" thirdDate-constraint="0" expand="true">
+                <depend id="46" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="46" name="Getting WINE setup" color="#ccff99" meeting="false" start="2022-11-14" duration="3" complete="0" thirdDate="2022-11-14" thirdDate-constraint="0" expand="true">
+                <depend id="47" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="47" name="Implementing code onto PI" color="#ccff99" meeting="false" start="2022-11-17" duration="7" complete="0" thirdDate="2022-11-07" thirdDate-constraint="0" expand="true">
+                <depend id="48" type="2" difference="0" hardness="Strong"/>
+            </task>
+            <task id="48" name="Attaching PI to robot" color="#ccff99" meeting="false" start="2022-11-28" duration="1" complete="0" thirdDate="2022-11-07" thirdDate-constraint="0" expand="true">
+                <depend id="49" type="2" difference="0" hardness="Strong"/>
+            </task>
+        </task>
+        <task id="49" name="First Full Test" color="#ccff00" meeting="false" start="2022-11-29" duration="5" complete="0" thirdDate="2022-11-28" thirdDate-constraint="0" expand="true">
+            <task id="50" name="Fixing problems with robot" color="#ccff00" meeting="false" start="2022-11-29" duration="5" complete="0" thirdDate="2022-11-29" thirdDate-constraint="0" expand="true"/>
+        </task>
+    </tasks>
+    <resources>
+        <resource id="0" name="Daniel" function="Default:0" contacts="" phone=""/>
+        <resource id="1" name="Jackson" function="Default:0" contacts="" phone=""/>
+        <resource id="2" name="Michael" function="Default:0" contacts="" phone=""/>
+        <resource id="3" name="Ryan" function="Default:0" contacts="" phone=""/>
+    </resources>
+    <allocations>
+        <allocation task-id="11" resource-id="0" function="Default:0" responsible="false" load="10.0"/>
+        <allocation task-id="25" resource-id="0" function="Default:0" responsible="true" load="33.3"/>
+        <allocation task-id="26" resource-id="0" function="Default:0" responsible="true" load="45.0"/>
+        <allocation task-id="27" resource-id="0" function="Default:0" responsible="false" load="25.0"/>
+        <allocation task-id="28" resource-id="0" function="Default:1" responsible="true" load="30.0"/>
+        <allocation task-id="32" resource-id="0" function="Default:0" responsible="true" load="25.0"/>
+        <allocation task-id="35" resource-id="0" function="Default:0" responsible="true" load="40.0"/>
+        <allocation task-id="33" resource-id="0" function="Default:0" responsible="false" load="15.0"/>
+        <allocation task-id="36" resource-id="0" function="Default:0" responsible="false" load="15.0"/>
+        <allocation task-id="38" resource-id="0" function="Default:0" responsible="true" load="30.0"/>
+        <allocation task-id="0" resource-id="0" function="Default:0" responsible="true" load="33.0"/>
+        <allocation task-id="40" resource-id="0" function="Default:0" responsible="false" load="30.0"/>
+        <allocation task-id="11" resource-id="1" function="Default:0" responsible="false" load="25.0"/>
+        <allocation task-id="25" resource-id="1" function="Default:0" responsible="true" load="33.3"/>
+        <allocation task-id="26" resource-id="1" function="Default:0" responsible="false" load="10.0"/>
+        <allocation task-id="27" resource-id="1" function="Default:1" responsible="true" load="25.0"/>
+        <allocation task-id="31" resource-id="1" function="Default:0" responsible="false" load="25.0"/>
+        <allocation task-id="35" resource-id="1" function="Default:0" responsible="true" load="40.0"/>
+        <allocation task-id="38" resource-id="1" function="Default:0" responsible="false" load="60.0"/>
+        <allocation task-id="0" resource-id="1" function="Default:0" responsible="false" load="33.0"/>
+        <allocation task-id="40" resource-id="1" function="Default:0" responsible="false" load="20.0"/>
+        <allocation task-id="0" resource-id="2" function="Default:0" responsible="false" load="33.0"/>
+        <allocation task-id="11" resource-id="2" function="Default:0" responsible="false" load="10.0"/>
+        <allocation task-id="27" resource-id="2" function="Default:0" responsible="false" load="25.0"/>
+        <allocation task-id="28" resource-id="2" function="Default:0" responsible="false" load="20.0"/>
+        <allocation task-id="31" resource-id="2" function="Default:0" responsible="false" load="15.0"/>
+        <allocation task-id="35" resource-id="2" function="Default:0" responsible="false" load="20.0"/>
+        <allocation task-id="33" resource-id="2" function="Default:0" responsible="true" load="60.0"/>
+        <allocation task-id="40" resource-id="2" function="Default:0" responsible="false" load="20.0"/>
+        <allocation task-id="11" resource-id="3" function="Default:0" responsible="true" load="100.0"/>
+        <allocation task-id="25" resource-id="3" function="Default:0" responsible="true" load="33.3"/>
+        <allocation task-id="26" resource-id="3" function="Default:0" responsible="true" load="45.0"/>
+        <allocation task-id="27" resource-id="3" function="Default:1" responsible="true" load="25.0"/>
+        <allocation task-id="28" resource-id="3" function="Default:1" responsible="true" load="30.0"/>
+        <allocation task-id="31" resource-id="3" function="Default:0" responsible="true" load="30.0"/>
+        <allocation task-id="32" resource-id="3" function="Default:1" responsible="true" load="75.0"/>
+        <allocation task-id="33" resource-id="3" function="Default:0" responsible="false" load="15.0"/>
+        <allocation task-id="36" resource-id="3" function="Default:1" responsible="true" load="85.0"/>
+        <allocation task-id="40" resource-id="3" function="Default:0" responsible="true" load="10.0"/>
+    </allocations>
+    <vacations/>
+    <previous/>
+    <roles roleset-name="Default"/>
+</project>
