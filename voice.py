@@ -5,6 +5,56 @@ import subprocess
 import pyautogui
 import streamlit as st
 
+def voice_to_instructions():
+    """Convert voice to instructions"""
+    r = sr.Recognizer()
+    instructions = []
+    receive_command = False
+    recording = True
+
+    while recording == True:
+        try:
+            with sr.Microphone() as mic:
+                r.adjust_for_ambient_noise(mic, duration=.2)
+                audio = r.listen(mic)
+
+                text = r.recognize_google(audio)
+                text = text.lower()
+
+                print(f"Recognized {text}")
+
+                if "yo jake" in text and receive_command == False:
+                    instructions.append(text.replace("yo jake", ''))      
+                    receive_command = True
+                    print(instructions)
+                    st.write(instructions)
+                elif "do it jake" in text and receive_command == True:
+                    instructions.append(text.replace("do it jake", ''))
+                    print(instructions)
+                    st.write(instructions)
+                    recording = False
+                elif receive_command == True:
+                    instructions.append(text)
+                    print(instructions)
+                    st.write(instructions)
+
+        except:
+            r = sr.Recognizer()
+            continue
+
+
+    instructions = list(filter(None, instructions))
+    print(f"You said: {instructions}")
+    st.write(f"You said: {instructions}")
+    instructions = instructions + ["stop"]
+    return instructions
+    
+
+
+
+#####################################################################################################################
+# Main Code
+
 def main():
     r = sr.Recognizer()
     steps = []
@@ -22,20 +72,17 @@ def main():
 
                 print(f"Recognized {text}")
 
-                if "hello computer" in text and receive_command == False:
-                    steps.append(text.replace("hello computer", ''))      
+                if "yo jake" in text and receive_command == False:
+                    steps.append(text.replace("yo jake", ''))      
                     receive_command = True
                     print(steps)
-                    st.write(steps)
-                elif "goodbye computer" in text and receive_command == True:
-                    steps.append(text.replace("goodbye computer", ''))
+                elif "do it jake" in text and receive_command == True:
+                    steps.append(text.replace("do it jake", ''))
                     print(steps)
-                    st.write(steps)
                     recording = False
                 elif receive_command == True:
                     steps.append(text)
                     print(steps)
-                    st.write(steps)
 
         except:
             r = sr.Recognizer()
@@ -44,7 +91,6 @@ def main():
 
     steps = list(filter(None, steps))
     print(f"You said: {steps}")
-    st.write(f"You said: {steps}")
     steps = steps + ["stop"]
 
 
