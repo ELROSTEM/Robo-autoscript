@@ -1,4 +1,3 @@
-
 import speech_recognition as sr
 import openai
 import subprocess
@@ -97,7 +96,7 @@ def main():
     openai.api_key = st.secrets["OPENAI_API_KEY"]
 
     robotc_path = r'C:\Program Files (x86)\Robomatter Inc\ROBOTC Development Environment 4.X\ROBOTC.exe' 
-    script_path = 'C:\Coding\GitHub\Robo-autoscript\script.c'
+    script_path = r'C:\Users\stemg\Documents\GitHub\Robo-autoscript\script.c'
 
     content = "#pragma config(Motor,  port2,           rightMotor,    tmotorNormal, openLoop, reversed)\n#pragma config(Motor,  port3,           leftMotor,     tmotorNormal, openLoop)\n\n/*\nProgram Description: This program is a RobotC program\n\nRobot Description: The robot has 2 motors with 4 wheels.\n*/\n\ntask main()\n{\n"
 

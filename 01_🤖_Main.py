@@ -47,7 +47,7 @@ def generate_script(content, instructions_incode, instructions_prompt, robotc_pa
             pyautogui.sleep(3)
             pyautogui.press('f5') # Compile
             pyautogui.sleep(3)
-            pyautogui.moveTo(400, 75)
+            pyautogui.moveTo(650, 150)
             pyautogui.sleep(8)
             pyautogui.click()
             pyautogui.sleep(5)
@@ -58,7 +58,7 @@ def generate_script(content, instructions_incode, instructions_prompt, robotc_pa
 
 # Environment variables
 robotc_path = r'C:\Program Files (x86)\Robomatter Inc\ROBOTC Development Environment 4.X\ROBOTC.exe' 
-script_path = 'C:\Coding\GitHub\Robo-autoscript\script.c'
+script_path = r'C:\Users\stemg\Documents\GitHub\Robo-autoscript\script.c'
 
 st.set_page_config(
      page_title="Robo Auto Script",
