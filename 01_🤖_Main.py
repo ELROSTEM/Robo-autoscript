@@ -46,9 +46,9 @@ def generate_script(content, instructions_incode, instructions_prompt, robotc_pa
             pyautogui.press('enter') # Press enter
             pyautogui.sleep(3)
             pyautogui.press('f5') # Compile
-            pyautogui.sleep(3)
-            pyautogui.moveTo(650, 150)
-            pyautogui.sleep(8)
+            pyautogui.sleep(11)
+            x, y = pyautogui.locateCenterOnScreen('robotc_start.png', confidence=0.9)
+            pyautogui.moveTo(x, y)
             pyautogui.click()
             pyautogui.sleep(5)
             pyautogui.hotkey('alt', 'f4') # Close RobotC
