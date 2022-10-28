@@ -1,0 +1,9 @@
+#pragma config(Motor,  port3,           rightMotor,    tmotorNormal, openLoop, reversed)
+#pragma config(Motor,  port2,           leftMotor,     tmotorNormal, openLoop)
+
+/*
+Program Description: This program is a RobotC program
+Robot Description: The robot has 2 motors with 4 wheels
+*/
+task main()
+{

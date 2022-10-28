@@ -35,8 +35,10 @@ def generate_script(content, instructions_incode, instructions_prompt, robotc_pa
             # Download the first choice
             st.download_button('Download Script', response_choices[0]['text'].encode('utf-8'), file_name='script.c', mime='text/plain')
             
-            # Compile the script
-            # Open RoboC and Compile the script
+            # # Compile the script
+            # # Open RoboC and Compile the script
+            subprocess.Popen(robotc_path)
+            pyautogui.sleep(1)
             subprocess.Popen(robotc_path)
             pyautogui.sleep(4)
             pyautogui.hotkey('ctrl', 'o') # Open file
@@ -51,7 +53,7 @@ def generate_script(content, instructions_incode, instructions_prompt, robotc_pa
             pyautogui.moveTo(x, y)
             pyautogui.click()
             pyautogui.sleep(5)
-            pyautogui.hotkey('alt', 'f4') # Close RobotC
+            # # pyautogui.hotkey('alt', 'f5') # Close RobotC
 
         else:
             st.write("No choices found")
@@ -71,8 +73,16 @@ st.set_page_config(
 
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-# Spawn a new Ace editor
-content = st_ace(value="#pragma config(Motor,  port2,           rightMotor,    tmotorNormal, openLoop, reversed)\n#pragma config(Motor,  port3,           leftMotor,     tmotorNormal, openLoop)\n\n/*\nProgram Description: This program is a RobotC program\n\nRobot Description: The robot has 2 motors with 4 wheels.\n*/\n\ntask main()\n{\n", language="c")
+# select the boilerplate code
+boilerplate = st.selectbox("Select the boilerplate code", ["2_wheel_drive", "4_wheel_drive"])
+
+# Get the boilerplate code
+with open(f'boilerplates/{boilerplate}.txt', 'r') as f:
+    content = f.read()
+
+# content = st_ace(value="#pragma config(Motor,  port2,           rightMotor,    tmotorNormal, openLoop, reversed)\n#pragma config(Motor,  port3,           leftMotor,     tmotorNormal, openLoop)\n\n/*\nProgram Description: This program is a RobotC program\n\nRobot Description: The robot has 2 motors with 4 wheels.\n*/\n\ntask main()\n{\n", language="c_cpp")
+content = st_ace(value=content, language="c_cpp")
+
 # Tabs for mode selection
 tab1, tab2 = st.tabs(["Type", "Voice"])
 
