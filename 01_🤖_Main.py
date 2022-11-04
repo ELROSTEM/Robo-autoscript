@@ -35,25 +35,25 @@ def generate_script(input, prompt, robotc_path, script_path):
             # Download the first choice
             st.download_button('Download Script', response_choices[0]['text'].encode('utf-8'), file_name='script.c', mime='text/plain')
             
-            # # Compile the script
-            # # Open RoboC and Compile the script
-            # subprocess.Popen(robotc_path)
-            # pyautogui.sleep(1)
-            # subprocess.Popen(robotc_path)
-            # pyautogui.sleep(4)
-            # pyautogui.hotkey('ctrl', 'o') # Open file
-            # pyautogui.sleep(1)
-            # pyautogui.typewrite(script_path) # Type the path to the script
-            # pyautogui.sleep(2)
-            # pyautogui.press('enter') # Press enter
-            # pyautogui.sleep(3)
-            # pyautogui.press('f5') # Compile
-            # pyautogui.sleep(11)
-            # x, y = pyautogui.locateCenterOnScreen('robotc_start.png', confidence=0.9)
-            # pyautogui.moveTo(x, y)
-            # pyautogui.click()
-            # pyautogui.sleep(5)
-            # # pyautogui.hotkey('alt', 'f5') # Close RobotC
+            # Compile the script
+            with st.spinner('Compiling...'):
+                # Open RoboC and Compile the script
+                subprocess.Popen(robotc_path)
+                pyautogui.sleep(1)
+                pyautogui.hotkey('ctrl', 'o') # Open file
+                pyautogui.sleep(1)
+                pyautogui.typewrite(script_path) # Type the path to the script
+                pyautogui.sleep(2)
+                pyautogui.press('enter') # Press enter
+                pyautogui.sleep(3)
+                pyautogui.press('f5') # Compile
+                # pyautogui.sleep(11)
+                # x, y = pyautogui.locateCenterOnScreen('robotc_start.png', confidence=0.9)
+                # pyautogui.moveTo(x, y)
+                # pyautogui.click()
+                # pyautogui.sleep(5)
+                # pyautogui.hotkey('alt', 'f5') # Close RobotC
+            st.success('Done!')
 
         else:
             st.write("No choices found")
