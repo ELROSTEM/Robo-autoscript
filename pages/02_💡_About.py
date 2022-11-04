@@ -8,3 +8,6 @@ st.set_page_config(
          'About': "Scripting RoboC code with OpenAi's Codex"
      }
 )
+
+
+st.video("https://youtu.be/UwRmSTzJoDI")

@@ -5,7 +5,7 @@ import subprocess
 import pyautogui
 import voice
 
-def generate_script(content, instructions_incode, instructions_prompt, robotc_path, script_path):
+def generate_script(input, prompt, robotc_path, script_path):
     """Generates the script for the robot to execute by calling the OpenAI API
     It also compiles the script and runs it on the robot
 
@@ -16,9 +16,9 @@ def generate_script(content, instructions_incode, instructions_prompt, robotc_pa
     """
     response = openai.Edit.create(
         model="code-davinci-edit-001",
-        input = f"{content}{instructions_incode}\n",
-        instruction=instructions_prompt,
-        temperature=0,
+        input = f"{input}\n",
+        instruction=prompt,
+        temperature=0.5,
         top_p=1
     )
 
@@ -37,22 +37,22 @@ def generate_script(content, instructions_incode, instructions_prompt, robotc_pa
             
             # # Compile the script
             # # Open RoboC and Compile the script
-            subprocess.Popen(robotc_path)
-            pyautogui.sleep(1)
-            subprocess.Popen(robotc_path)
-            pyautogui.sleep(4)
-            pyautogui.hotkey('ctrl', 'o') # Open file
-            pyautogui.sleep(1)
-            pyautogui.typewrite(script_path) # Type the path to the script
-            pyautogui.sleep(2)
-            pyautogui.press('enter') # Press enter
-            pyautogui.sleep(3)
-            pyautogui.press('f5') # Compile
-            pyautogui.sleep(11)
-            x, y = pyautogui.locateCenterOnScreen('robotc_start.png', confidence=0.9)
-            pyautogui.moveTo(x, y)
-            pyautogui.click()
-            pyautogui.sleep(5)
+            # subprocess.Popen(robotc_path)
+            # pyautogui.sleep(1)
+            # subprocess.Popen(robotc_path)
+            # pyautogui.sleep(4)
+            # pyautogui.hotkey('ctrl', 'o') # Open file
+            # pyautogui.sleep(1)
+            # pyautogui.typewrite(script_path) # Type the path to the script
+            # pyautogui.sleep(2)
+            # pyautogui.press('enter') # Press enter
+            # pyautogui.sleep(3)
+            # pyautogui.press('f5') # Compile
+            # pyautogui.sleep(11)
+            # x, y = pyautogui.locateCenterOnScreen('robotc_start.png', confidence=0.9)
+            # pyautogui.moveTo(x, y)
+            # pyautogui.click()
+            # pyautogui.sleep(5)
             # # pyautogui.hotkey('alt', 'f5') # Close RobotC
 
         else:
@@ -60,7 +60,7 @@ def generate_script(content, instructions_incode, instructions_prompt, robotc_pa
 
 # Environment variables
 robotc_path = r'C:\Program Files (x86)\Robomatter Inc\ROBOTC Development Environment 4.X\ROBOTC.exe' 
-script_path = r'C:\Users\stemg\Documents\GitHub\Robo-autoscript\script.c'
+script_path = r'C:\coding\GitHub\Robo-autoscript\script.c'
 
 st.set_page_config(
      page_title="Robo Auto Script",
@@ -78,16 +78,18 @@ boilerplate = st.selectbox("Select the boilerplate code", ["2_wheel_drive", "4_w
 
 # Get the boilerplate code
 with open(f'boilerplates/{boilerplate}.txt', 'r') as f:
-    content = f.read()
+    boilerplate = f.read()
 
-# content = st_ace(value="#pragma config(Motor,  port2,           rightMotor,    tmotorNormal, openLoop, reversed)\n#pragma config(Motor,  port3,           leftMotor,     tmotorNormal, openLoop)\n\n/*\nProgram Description: This program is a RobotC program\n\nRobot Description: The robot has 2 motors with 4 wheels.\n*/\n\ntask main()\n{\n", language="c_cpp")
-content = st_ace(value=content, language="c_cpp")
+# Display the boilerplate code for prompt engineering
+boilerplate = st_ace(value=boilerplate, language="c_cpp")
 
 # Tabs for mode selection
-tab1, tab2 = st.tabs(["Type", "Voice"])
+tab1, tab2, tab3 = st.tabs(["Type SI", "Type PS", "Voice SI"])
 
-# Type mode
+# Type Sequence of Instructions (SI) mode
 with tab1:
+    st.header("Type Sequence of Instructions (SI)")
+
     # Instruction input
     if 'instructions' not in st.session_state:
         st.session_state['instructions'] = ['Stop']
@@ -96,7 +98,7 @@ with tab1:
     col1, col2 = st.columns(2)
     if col1.button("Add instruction"):
         st.session_state['instructions'].insert(-1, new_instruction)
-    elif col2.button("Clear Instructions"):
+    if col2.button("Clear Instructions"):
         st.session_state['instructions'] = ['Stop']
         st.experimental_rerun()
 
@@ -107,13 +109,27 @@ with tab1:
         st.caption(f"{index + 1}. {instruction}")
         instructions_prompt += f"    {index + 1}. {instruction}\n"
         instructions_incode += f"   // {index + 1}. {instruction}\n\n\n"
+    instructions_input = boilerplate + instructions_incode
 
     # Generate code
-    if st.button("🤖 Generate Script"):
-        generate_script(content, instructions_incode, instructions_prompt, robotc_path, script_path)
+    if st.button("🤖 Generate Script", key="TSI_script"):
+        generate_script(instructions_input, instructions_prompt, robotc_path, script_path)
 
-# Voice mode          
 with tab2:
+    st.header("Type Problem Solving (PS)")
+
+    # Problem input
+    problem_prompt = st.text_area("Problem")
+
+    # Generate code
+    if st.button("🤖 Generate Script", key='TPS_script'):
+        generate_script(boilerplate, problem_prompt, robotc_path, script_path)
+
+
+# Voice Sequence of Instructions mode          
+with tab3:
+    st.header("Voice Sequence of Instructions (SI)")
+
     recording = st.button("🎤 Start Recording")
     if recording:
         instructions = voice.voice_to_instructions()
@@ -125,6 +141,7 @@ with tab2:
             st.caption(f"{index + 1}. {instruction}")
             instructions_prompt += f"    {index + 1}. {instruction}\n"
             instructions_incode += f"   // {index + 1}. {instruction}\n\n\n"
+        instructions_input = boilerplate + instructions_incode
 
         # Generate code
-        generate_script(content, instructions_incode, instructions_prompt, robotc_path, script_path)
+        generate_script(instructions_input, instructions_prompt, robotc_path, script_path)
