@@ -1,6 +1,7 @@
 # Congressional APP Challenge [Link](https://www.congressionalappchallenge.us/)
 
 [![Watch the video](https://img.youtube.com/vi/UwRmSTzJoDI/hqdefault.jpg)](https://youtu.be/UwRmSTzJoDI)
+*^ click image to watch video!*
 
 ## What Does It Do?
   Our app synthesizes code for robots to execute from the English language, using artificial intelligence without human assistance. The GUI provides a user-friendly interface to input commands for the robot to perform. There are two input methods, text, and voice, which take in commands from the user in English. The app handles all translations between high-level English straight to the action executed by the robot. This means that the robot can react to high-level natural language inputs and generate code to complete the command without any hard-coded action. With this new ability made possible by artificial intelligence, robots programmed by this app will be more adaptive, creative, and flexible.
