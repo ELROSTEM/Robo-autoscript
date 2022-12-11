@@ -1,7 +1,7 @@
-# Congressional APP Challenge [Link](https://www.congressionalappchallenge.us/)
+# Robo Auto Script
 
 [![Watch the video](https://img.youtube.com/vi/UwRmSTzJoDI/hqdefault.jpg)](https://youtu.be/UwRmSTzJoDI)
-*^ click image to watch video!*
+*< click image to watch video or go here [Link](https://youtu.be/UwRmSTzJoDI)!*
 
 ## What Does It Do?
   Our app synthesizes code for robots to execute from the English language, using artificial intelligence without human assistance. The GUI provides a user-friendly interface to input commands for the robot to perform. There are two input methods, text, and voice, which take in commands from the user in English. The app handles all translations between high-level English straight to the action executed by the robot. This means that the robot can react to high-level natural language inputs and generate code to complete the command without any hard-coded action. With this new ability made possible by artificial intelligence, robots programmed by this app will be more adaptive, creative, and flexible.
@@ -15,6 +15,8 @@
   
  ## Future Improvements
   Several upgrades can be made to the app to improve its operating speed, versatility, reliability, and accuracy. The most crucial improvement we need to make is to improve the current manipulation of the Codex model through prompt engineering, parameter tuning, and the processing of API calls. By manipulating the model more effectively, we can unlock the true potential of these LLMs. In addition to model manipulation, we can also dramatically improve our hardware and software capabilities. After many years of abuse, some motors are weaker than other motors due to their poor and weathered condition. We can fix this by implementing calibration software for our robot or by getting new hardware. Furthermore, we wish to further improve and streamline the translation process from natural language commands to robot code. By improving our voice recognition software to filter out background noise, we can make the input process much more efficient, practical, and compatible with a wider audience.
+  
+ 
 
 
 # How to get started
