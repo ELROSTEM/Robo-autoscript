@@ -6,7 +6,7 @@ mask = segmentImage(img);
 mask = mask(numRows/2, :);
 line = mask;
 %Makes sure the first/last element of the array is not 0
-line = [1 , line , 1];
+line = [0 , line , 0];
 i = 1;
 current = [];
 total = [];
@@ -15,8 +15,8 @@ counter = [];
 %Finds the largest distance between black tiles 
 %% Note: This is inverse, it needs to find largest distance between white tiles
 while i < length(line)+1
-    if line(1, i) == 0
-        if line(1, i-1) == 1 %If there is a white tile before it
+    if line(1, i) == 1
+        if line(1, i-1) == 0 %If there is a white tile before it
                 total = [total, current]; 
                 current = 1;
                 counter = [counter, i];
@@ -36,5 +36,7 @@ c = cell2mat(c(b));
 for j = 1:j+1
     img = insertShape(img, 'line', [min(c) 1000 max(c) 1000], 'LineWidth', 10, 'Color', 'red');
 end
+%Draws the circle in the center of the line
+img = insertShape(img,"circle",[mean(c) 1000 1],LineWidth=25);
 imshow(img)
 
