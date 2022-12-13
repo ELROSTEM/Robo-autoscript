@@ -38,5 +38,30 @@ for j = 1:j+1
 end
 %Draws the circle in the center of the line
 img = insertShape(img,"circle",[mean(c) 1000 1],LineWidth=25);
-imshow(img)
+%imshow(img)
+%Drawing temporary lines for viewing the division of the screen
+img = insertShape(img, 'line', [7*numCols/16 0 7*numCols/16 numRows], 'LineWidth', 10, 'Color', 'blue');
+img = insertShape(img, 'line', [9*numCols/16 0 9*numCols/16 numRows], 'LineWidth', 10, 'Color', 'blue');
+img = insertShape(img, 'line', [7*numCols/32 0 7*numCols/32 numRows], 'LineWidth', 10, 'Color', 'blue');
+img = insertShape(img, 'line', [25*numCols/32 0 25*numCols/32 numRows], 'LineWidth', 10, 'Color', 'blue');
 
+imshow(img)
+%if the line is less than x pixels then say there is no free space
+%try specifying angle 
+
+if mean(c) < 7*numCols/32
+    %disp("1st segment")
+    disp("Turn left and go forwards")
+elseif mean(c) > 7*numCols/32 & mean(c) < 7*numCols/16 
+    %disp("2nd segment")
+    disp("Turn slightly left and go forwards")
+elseif mean(c) > 7*numCols/16 & mean(c) < 7*numCols/32
+    %disp("3rd segment")
+    disp("Go forwards")
+elseif mean(c) > 7*numCols/32 & mean(c) < 25*numCols/32
+    %disp("4th segment")
+    disp("Turn slightly right and go forwards")
+elseif mean(c) > 25*numCols/32
+    %disp("5th segment")
+    disp("Turn right and go forwards")
+end
