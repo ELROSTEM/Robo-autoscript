@@ -60,7 +60,7 @@ def generate_script(input, prompt, robotc_path, script_path):
 
 # Environment variables
 robotc_path = r'C:\Program Files (x86)\Robomatter Inc\ROBOTC Development Environment 4.X\ROBOTC.exe' 
-script_path = r'C:\coding\GitHub\Robo-autoscript\script.c'
+script_path = r'C:\coding\GitHub\Robo-autoscript\Dashboard\script.c'
 
 st.set_page_config(
      page_title="Robo Auto Script",
