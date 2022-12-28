@@ -1,6 +1,6 @@
 # Robo Auto Script
 
-**We placed 2nd place for our district:** [Letter from Congresswoman Maloney](https://raw.githubusercontent.com/ELROSTEM/Robo-autoscript/main/ROBO_AUTOSCRIPT.pdf)
+**We placed 2nd place for our district:** [Letter from Congresswoman Maloney](https://github.com/ELROSTEM/Robo-autoscript/blob/main/ROBO_AUTOSCRIPT.pdf)
 
 [![Watch the video](https://img.youtube.com/vi/UwRmSTzJoDI/hqdefault.jpg)](https://youtu.be/UwRmSTzJoDI)
 *< click image to watch video or go here [Link](https://youtu.be/UwRmSTzJoDI)!*
