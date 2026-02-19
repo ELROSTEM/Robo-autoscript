@@ -3,30 +3,20 @@ import os
 from rag_engine import build_rag_pipeline
 
 def test_syntax_generation():
-    """
-    Verifies that the RAG engine produces valid ROBOTC 
-    boilerplate and structure when given a prompt.
-    """
-    # 1. Setup the pipeline using the manual in the same folder
-    generate_code = build_rag_pipeline("ROBOT_Manual.md")
+    # 1. Dynamically find the path to the manual
+    # This finds the directory this test file is in (Dashboard)
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    manual_path = os.path.join(base_dir, "ROBOT_Manual.md")
     
-    # 2. Create a dummy boilerplate with a unique motor name
+    # Initialize the pipeline with the absolute path
+    generate_code = build_rag_pipeline(manual_path)
+    
     test_boilerplate = "// Test Config\n#pragma config(Motor, port2, leftMotor, tmotorNormal, openLoop)"
-    
-    # 3. Ask for a simple action
     result = generate_code("Move forward for 1 second", test_boilerplate)
     
-    # 4. Assertions (The "Checks")
-    # Does it have the main task block?
     assert "task main()" in result
-    
-    # Does it actually contain motor commands?
     assert "motor[" in result
-    
-    # Does it include the specific motor name from our boilerplate?
     assert "leftMotor" in result
-    
-    # Does it close the brackets?
     assert "}" in result
 
 if __name__ == "__main__":
