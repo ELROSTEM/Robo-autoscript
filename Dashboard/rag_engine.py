@@ -59,6 +59,11 @@ def build_rag_pipeline(markdown_path: str):
     coder_template = """You are an expert robotics software engineer programming in ROBOTC.
     You have been given a Grounded Task Plan (a sequence of verified actions) and the relevant Context from the Reference Manual for those actions.
     
+    CRITICAL HARDWARE RULE: Look closely at the Boilerplate Configuration provided below. 
+    If the boilerplate initializes 4 drive motors (e.g., it includes leftrearMotor and rightrearMotor), 
+    you MUST ensure that all your generated locomotion commands apply power to all 4 motors, 
+    even if the Context examples only show 2 motors.
+    
     Boilerplate Configuration Provided by User:
     {boilerplate}
     
