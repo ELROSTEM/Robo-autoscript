@@ -16,85 +16,114 @@ def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
 
 def build_rag_pipeline(markdown_path: str):
-    """Builds the vector database and the LangChain QA pipeline from a Markdown file."""
+    """Builds the SayCan-style Agentic RAG pipeline."""
     print("🧠 Loading ROBOT_Manual.md...")
     
-    # 1. Load the Markdown file
+    # 1. Load and Split the Manual
     loader = TextLoader(markdown_path, encoding="utf-8")
     docs = loader.load()
-    
-    # 2. Split the text into manageable chunks
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=400, chunk_overlap=50)
     splits = text_splitter.split_documents(docs)
     
-    # 3. Create the FAISS Vector Database using the cheapest embedding model
+    # 2. Create the Vector Store
     vectorstore = FAISS.from_documents(
         splits, 
         OpenAIEmbeddings(model="text-embedding-3-small")
     )
+    # We only need the top 2 chunks per step since we are doing micro-queries
+    retriever = vectorstore.as_retriever(search_kwargs={"k": 2})
     
-    # We retrieve the top 3 most relevant chunks based on the user's prompt
-    retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
+    # Initialize the LLM Engine
+    llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+
+    # ---------------------------------------------------------
+    # AGENT 1: THE PLANNER (Task Decomposition)
+    # ---------------------------------------------------------
+    planner_template = """You are a robotic task planner. 
+    Break the following complex user request into a simple, numbered list of atomic robotic actions.
+    Keep them high-level (e.g., "1. Move forward", "2. Turn left").
     
-    # 4. Create the Prompt with the boilerplate injected dynamically
-    template = """You are an expert robotics software engineer programming in ROBOTC.
-    Use the following pieces of retrieved documentation to write the exact C code that accomplishes the user's request.
+    CRITICAL RULE: If the user asks the robot to do something physically impossible for a standard wheeled robot 
+    (like fly, shoot lasers, jump, or teleport), EXCLUDE that action entirely or replace it with "stop".
+    
+    User Request: {question}
+    
+    Output ONLY the numbered list of achievable actions. Do not write code.
+    """
+    planner_prompt = ChatPromptTemplate.from_template(planner_template)
+    planner_chain = planner_prompt | llm | StrOutputParser()
+
+    # ---------------------------------------------------------
+    # AGENT 2: THE CODER (Syntax Generation)
+    # ---------------------------------------------------------
+    coder_template = """You are an expert robotics software engineer programming in ROBOTC.
+    You have been given a Grounded Task Plan (a sequence of verified actions) and the relevant Context from the Reference Manual for those actions.
     
     Boilerplate Configuration Provided by User:
     {boilerplate}
     
+    Grounded Task Plan:
+    {task_plan}
+
     Context from Reference Manual:
     {context}
     
-    User Request: {question}
-    
-    Provide ONLY the final, complete ROBOTC script including the boilerplate at the top. 
+    Write the final, complete ROBOTC script executing the task plan in order. 
     Make sure you declare the task main() block and put your generated code inside it.
-    Do not include markdown formatting like ```c, and do not provide explanations.
+    Add comments explaining each step from the task plan.
+    Provide ONLY the code. Do not include markdown formatting like ```c, and do not provide explanations.
     """
-    prompt = ChatPromptTemplate.from_template(template)
+    coder_prompt = ChatPromptTemplate.from_template(coder_template)
+    coder_chain = coder_prompt | llm | StrOutputParser()
     
-    # 5. Initialize the LLM (using the cheapest, smartest model)
-    llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
-    
-    # 6. Chain it all together using LangChain Expression Language (LCEL)
-    full_chain = prompt | llm | StrOutputParser()
-    
-    # 7. Define the generation function
+    # ---------------------------------------------------------
+    # THE PIPELINE ORCHESTRATOR
+    # ---------------------------------------------------------
     def generate_code(question: str, boilerplate: str):
-        # Retrieve context based ONLY on the question
-        docs = retriever.invoke(question)
-        context_str = format_docs(docs)
+        # STEP 1: Decompose the problem (The "Say")
+        print("\n🧠 [Planner] Decomposing complex task...")
+        task_plan = planner_chain.invoke({"question": question})
+        print(f"📋 Grounded Task Plan Generated:\n{task_plan}\n")
         
-        # Pass everything into the prompt and generate
-        return full_chain.invoke({
+        # STEP 2: Grounding Loop (The "Can")
+        print("🔍 [Retriever] Fetching manual chunks for each individual step...")
+        steps = task_plan.split('\n')
+        all_docs = []
+        
+        for step in steps:
+            if step.strip(): # Ignore empty lines
+                # Retrieve context just for this specific micro-action
+                docs = retriever.invoke(step)
+                all_docs.extend(docs)
+        
+        # Deduplicate chunks so we don't overflow the context window
+        unique_docs = {doc.page_content: doc for doc in all_docs}.values()
+        context_str = format_docs(unique_docs)
+        
+        # STEP 3: Generate the Code
+        print("💻 [Coder] Writing final ROBOTC script...")
+        return coder_chain.invoke({
             "context": context_str,
-            "question": question,
+            "task_plan": task_plan,
             "boilerplate": boilerplate
         })
         
     return generate_code
 
+# --- Quick Terminal Test ---
 if __name__ == "__main__":
-    # --- TEST PHASE ---
-    # Make sure 'ROBOT_Manual.md' is in the same directory, 
-    # and your .env file contains OPENAI_API_KEY="sk-..."
+    generate_code = build_rag_pipeline("ROBOT_Manual.md")
     
     four_wheel_boilerplate = """
     #pragma config(Motor,  port3,           rightMotor,    tmotorNormal, openLoop, reversed)
     #pragma config(Motor,  port2,           leftMotor,     tmotorNormal, openLoop)
     #pragma config(Motor,  port5,           rightrearMotor,     tmotorNormal, openLoop, reversed)
     #pragma config(Motor,  port4,           leftrearMotor,      tmotorNormal, openLoop)
-    /*
-    Program Description: This program is a RobotC program
-    Robot Description: The robot has 4 motors with 4 wheels
-    */
     """
     
-    generate_code = build_rag_pipeline("ROBOT_Manual.md")
+    # We are giving it a complex task WITH an impossible action (flying)
+    user_command = "Drive forward to the wall, do a pivot turn left, fly over the wall, and then reverse."
     
-    user_command = "Move forward for a bit, then do a pivot turn to the left, and then stop."
-    print(f"\n🤖 Generating code for 4-WHEEL DRIVE: '{user_command}'...\n")
-    
-    generated_code = generate_code(question=user_command, boilerplate=four_wheel_boilerplate)
-    print(generated_code)
+    final_code = generate_code(question=user_command, boilerplate=four_wheel_boilerplate)
+    print("\n--- FINAL C CODE ---\n")
+    print(final_code)
