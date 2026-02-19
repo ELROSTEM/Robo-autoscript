@@ -4,3 +4,10 @@ streamlit_ace
 pyautogui
 pyaudio
 speechrecognition
+
+langchain
+langchain-openai
+langchain-community
+faiss-cpu
+numpy
+python-dotenv
