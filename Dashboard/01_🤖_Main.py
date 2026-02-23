@@ -4,6 +4,7 @@ import time
 import os
 import subprocess
 import speech_recognition as sr
+import random
 
 # Import our new Agentic RAG engine
 from rag_engine import build_rag_pipeline
@@ -91,6 +92,17 @@ with st.sidebar:
     execution_mode = st.radio("Execution Mode", ["Virtual Simulator (Safe Demo)", "Legacy RPA (PyAutoGUI Windows)"])
     st.divider()
     boilerplate_choice = st.selectbox("Hardware Config", ["2_wheel_drive", "4_wheel_drive"])
+    
+    st.divider()
+    st.header("🚨 Hardware Interrupts")
+    st.write("Simulate an incoming serial signal from the Raspberry Pi CV Module.")
+    if st.button("📷 Trigger Camera Obstacle", type="primary"):
+        scenarios = [
+            "EMERGENCY SENSOR READING: Obstacle directly ahead. The left path is completely clear. The right path is blocked by a wall. Decide how to safely evade.",
+            "EMERGENCY SENSOR READING: Obstacle directly ahead. The right path is completely clear. The left path is blocked by a wall. Decide how to safely evade.",
+            "EMERGENCY SENSOR READING: Trapped! Obstacles detected ahead, to the left, and to the right. Only the rear is clear. Decide how to safely evade."
+        ]
+        st.session_state['hardware_interrupt'] = random.choice(scenarios)
 
 try:
     with open(f'boilerplates/{boilerplate_choice}.txt', 'r') as f:
@@ -100,6 +112,16 @@ except FileNotFoundError:
 
 with st.expander("View/Edit Current Boilerplate"):
     boilerplate = st_ace(value=boilerplate, language="c_cpp", height=200)
+
+# Check for hardware interrupts before rendering the rest of the UI
+if 'hardware_interrupt' in st.session_state and st.session_state['hardware_interrupt']:
+    st.error("🚨 HARDWARE INTERRUPT RECEIVED FROM RASPBERRY PI 🚨")
+    st.warning(st.session_state['hardware_interrupt'])
+    
+    process_and_generate(st.session_state['hardware_interrupt'], boilerplate, execution_mode)
+    
+    st.session_state['hardware_interrupt'] = None
+    st.stop() 
 
 # ---------------------------------------------------------
 # 4. MAIN TABS
